@@ -1,0 +1,70 @@
+{
+  "name": "60db-cli",
+  "version": "1.2.2",
+  "description": "60db.ai CLI - Complete CLI with auth, AI completions, TTS, STT, categories, user management, credits, billing, and workspaces",
+  "main": "index.js",
+  "bin": {
+    "60db": "./index.js"
+  },
+  "scripts": {
+    "start": "node index.js",
+    "test": "node test/test.js",
+    "prepublishOnly": "npm test"
+  },
+  "keywords": [
+    "cli",
+    "60db",
+    "60db.ai",
+    "api",
+    "agent",
+    "ai",
+    "billing",
+    "credits",
+    "workspaces",
+    "management",
+    "completions",
+    "chat",
+    "llm",
+    "meeting-notes",
+    "tts",
+    "stt",
+    "text-to-speech",
+    "speech-to-text",
+    "voice",
+    "authentication",
+    "login",
+    "categories"
+  ],
+  "author": "60db.ai",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/60db/cli.git"
+  },
+  "homepage": "https://github.com/60db/cli#readme",
+  "bugs": {
+    "url": "https://github.com/60db/cli/issues"
+  },
+  "dependencies": {
+    "commander": "^11.1.0",
+    "chalk": "^4.1.2",
+    "cli-table3": "^0.6.3",
+    "axios": "^1.6.2",
+    "dotenv": "^16.3.1",
+    "form-data": "^4.0.0"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "files": [
+    "index.js",
+    "commands/",
+    "README.md",
+    "LICENSE"
+  ],
+  "os": [
+    "darwin",
+    "linux",
+    "win32"
+  ]
+}

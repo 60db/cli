@@ -1,0 +1,50 @@
+# Dependencies
+node_modules/
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Local config & credentials — never commit
+.env
+.env.*
+.60db-cli-config.json
+.60db-cli-token.json
+config.json
+credentials.json
+*.pem
+*.key
+
+# Test artifacts (audio output, transcripts, downloaded files)
+*.mp3
+*.wav
+*.ogg
+*.flac
+*.m4a
+output/
+downloads/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Test coverage
+coverage/
+.nyc_output/
+
+# Temporary files
+tmp/
+temp/
+*.tmp
