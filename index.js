@@ -560,11 +560,15 @@ program
   .description('Hybrid semantic + keyword search over memories')
   .requiredOption('-q, --query <text>', 'Search query')
   .option('-c, --collection <id>', 'Collection to search')
-  .option('--mode <mode>', "'fast' (default) or 'thinking'", 'fast')
+  .option('--mode <mode>', "'fast' (default) or 'thinking' (cross-encoder rerank)", 'fast')
   .option('--limit <n>', 'Max results (1-50)', '10')
   .option('--alpha <n>', 'Semantic weight (0=keyword only, 1=semantic only)', '0.8')
   .option('--recency-bias <n>', 'Weight given to newer memories (0-1)', '0')
   .option('--graph', 'Include knowledge-graph relationships')
+  .option('--rerank-top-k <n>', 'Max candidates to rerank (override server default)')
+  .option('--rerank-timeout <ms>', 'Hard timeout for rerank call in ms')
+  .option('--min-rerank-score <n>', 'Drop results below this rerank score (0-1)')
+  .option('--fetch-multiplier <n>', 'In thinking mode, fetch N × limit candidates')
   .action(async (options) => {
     await memoryCommands.search(options, api, output, CONFIG);
   });

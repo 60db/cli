@@ -202,6 +202,11 @@ module.exports = {
       graph_context: options.graph === true || options.graph === 'true',
     };
     if (options.collection) body.collection = options.collection;
+    // Advanced reranker knobs — only include if explicitly set
+    if (options.rerankTopK != null) body.rerank_top_k = parseInt(options.rerankTopK);
+    if (options.rerankTimeout != null) body.rerank_timeout_ms = parseInt(options.rerankTimeout);
+    if (options.minRerankScore != null) body.min_rerank_score = parseFloat(options.minRerankScore);
+    if (options.fetchMultiplier != null) body.fetch_multiplier = parseInt(options.fetchMultiplier);
 
     try {
       const res = await api.post('/memory/search', body);
@@ -211,17 +216,21 @@ module.exports = {
       if (config.outputFormat === 'json') {
         output.json({ success: true, data, billing });
       } else {
+        const rerankMode = data?.trace?.rerank?.mode || 'off';
         console.log();
         console.log(
           chalk.white.bold(`Found ${sources.length} results`) +
-            chalk.gray(` for "${options.query}" (${data?.latency_ms || '?'}ms)`)
+            chalk.gray(` for "${options.query}" (${data?.latency_ms || '?'}ms)`) +
+            (rerankMode !== 'off' ? chalk.magenta(` [reranker: ${rerankMode}]`) : '')
         );
         console.log();
         sources.forEach((s, i) => {
-          const score = typeof s.score === 'number' ? s.score.toFixed(3) : '?';
+          const dense = typeof s.score === 'number' ? s.score.toFixed(3) : '?';
+          const rerank = typeof s.rerank_score === 'number' ? chalk.magenta(` rerank=${s.rerank_score.toFixed(4)}`) : '';
           console.log(
             chalk.cyan(`${i + 1}. `) +
-              chalk.yellow(`[${score}]`) +
+              chalk.yellow(`[${dense}]`) +
+              rerank +
               (s.title ? chalk.white(' ' + s.title) : '')
           );
           const text = (s.text || '').slice(0, 200);
