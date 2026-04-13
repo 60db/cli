@@ -78,7 +78,7 @@ function handleErr(err, output, config) {
           )
         );
       }
-      output.info('Run `60db billing:add-funds --amount 10` to top up your wallet');
+      output.info('Top up your workspace wallet via the Dashboard: https://app.60db.ai');
     }
     return;
   }

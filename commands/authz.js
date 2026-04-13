@@ -37,7 +37,7 @@ module.exports = {
       if (data.credit_balance != null) {
         const balance = Number(data.credit_balance);
         const col = balance < 0.5 ? chalk.red : chalk.green;
-        console.log(chalk.gray('Wallet: ') + col('$' + balance.toFixed(4)));
+        console.log(chalk.gray('Workspace Wallet: ') + col('$' + balance.toFixed(4)));
       }
       console.log();
 
