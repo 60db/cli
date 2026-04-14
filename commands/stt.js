@@ -39,6 +39,14 @@ module.exports = {
         form.append('diarize', 'true');
       }
 
+      // Forward the optional --context string to the upstream
+      // /v1/transcribe endpoint. Free-form paragraph describing the
+      // session (domain, speakers, jargon); when supplied, the server
+      // runs a background LLM refinement pass on the transcript.
+      if (options.context && String(options.context).trim()) {
+        form.append('context', String(options.context).trim());
+      }
+
       // Make request with form data
       const response = await api.post('/stt', form, {
         headers: {

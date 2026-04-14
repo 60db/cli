@@ -504,6 +504,7 @@ program
   .requiredOption('-f, --file <path>', 'Audio file path')
   .option('-l, --language <code>', 'Language code (e.g. en, hi). Omit or pass "auto" for auto-detect')
   .option('--diarize <boolean>', 'Enable speaker diarization (default: false)')
+  .option('--context <text>', 'Free-form paragraph describing the session (domain, speakers, jargon) — enables server-side LLM refinement')
   .action(async (options) => {
     await sttCommands.transcribe(options, api, output, CONFIG);
   });
